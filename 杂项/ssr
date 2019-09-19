@@ -1,0 +1,24 @@
+import random
+
+def chou():
+    ran1 = random.randint(1, 100)
+    if ran1 == 1:
+        ran2 = random.randint(1,10)
+        if ran2 <= 5:
+            print('恭喜抽到UP中的SSR')
+        else:
+            print('恭喜抽到SSR')
+    else:
+        print('氪金吧，兄弟')
+
+while True:
+    print('1.抽一次')
+    print('2.抽十次')
+    num = int(input('请输入数字选择次数：'))
+    if num == 1:
+        chou()
+    else:
+        for i in range(0,11):
+            chou()
+
+

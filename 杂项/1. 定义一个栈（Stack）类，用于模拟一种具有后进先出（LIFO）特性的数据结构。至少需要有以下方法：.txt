@@ -1,0 +1,59 @@
+定义一个栈（Stack）类，用于模拟一种具有后进先出（LIFO）特性的数据结构
+  方法：isEmpty():判断当前栈是否为空（返回True或Talse）
+       push():往栈的顶部压入一个数据项
+       pop():从栈顶弹出一个数据项（并在栈中删除）
+       top():显示当前栈顶的一个数据项
+       bottom():显示当前栈底的一个数据项
+  1 #!/usr/bin/python                                         
+  2 #coding:utf8
+  3
+  4 class Stack:
+  5     def __init__(self,stack=[]):
+  6         self.stack = []
+  7         for x in stack:
+  8             self.push(x)
+  9
+ 10     def isEmpty(self):
+ 11         return not self.stack
+ 12
+ 13     def push(self,obj):
+ 14         self.stack.append(obj)
+ 15
+ 16     def pop(self):
+ 17         if not self.stack:
+ 18             print("Stack is empty!")
+ 19         else:
+ 20             return self.stack.pop()
+ 21
+ 22     def top(self):
+ 23         if not self.stack:
+ 24             print("Stack is empty!")
+ 25         else:
+ 26             return self.stack[-1]
+ 27
+ 28     def bottom(self):
+ 29         if not self.stack:
+ 30             print("Stack is empty!")
+ 31         else:
+ 32             return self.stack[0]
+ 33
+ 34 s = Stack()
+ 35 s.push(1)
+ 36 s.push(2)
+ 37 s.push(3)
+ 38 print"插入数字1，2，3："
+ 39 print "top:",s.top()
+ 40 print "bottom:",s.bottom()
+ 41 print "pop1:",s.pop()
+ 42 print "pop2:",s.pop()
+ 43 print "pop3:",s.pop()
+ 44 print "isEmpty:",s.isEmpty()
+
+运行结果：# python Stack.py
+插入数字1，2，3：
+top: 3
+bottom: 1
+pop1: 3
+pop2: 2
+pop3: 1
+isEmpty: True
