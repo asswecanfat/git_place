@@ -1,7 +1,6 @@
 from BaseFunc import BaseFunc
 from ExpandFunc import ExpandFunc
 import click
-import re
 
 @click.command()
 @click.option('-c', nargs=1, type=str,help='参数应为文件+文件路径(若有-s则需要通配符)')
