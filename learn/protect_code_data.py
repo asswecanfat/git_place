@@ -24,7 +24,7 @@ def _test2(user_input=None):
 
 
 if __name__ == '__main__':
-    SECRET = 110
+    SECRET = (110,120)
     _test1()
     to_test = ToTest()
     user_input2 = '{t.__init__.__globals__[SECRET]}'
