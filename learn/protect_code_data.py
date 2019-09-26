@@ -24,10 +24,10 @@ def _test2(user_input=None):
 
 
 if __name__ == '__main__':
-    SECRET = (110,120)
+    SECRET = (110, 120)
     _test1()
     to_test = ToTest()
-    user_input2 = '{t.__init__.__globals__[SECRET]}'
+    user_input2 = input('请输入字符串：') #  '{t.__init__.__globals__[SECRET]}'
     user_input1 = '${t.__init__.__globals__[SECRET]}'
     _test2(user_input2)  # 此时可能暴露数据
     try:
