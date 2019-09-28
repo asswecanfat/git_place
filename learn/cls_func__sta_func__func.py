@@ -7,7 +7,7 @@ class HotDog(object):
     def __repr__(self):
         return f'HotDog({self.name!r})'
 
-    @classmethod
+    @classmethod  # 可用于生成工厂模式
     def name_fuck(cls):
         return cls('fuck')
 
