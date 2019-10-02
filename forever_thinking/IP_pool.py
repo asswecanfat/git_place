@@ -51,9 +51,8 @@ class IpPool(object):
         if 'pool' not in client['Ip_Pool'].list_collection_names():
             mycol = client['Ip_Pool']['pool']
         for i in range(1, url_page_num + 1):
-            for j in self.__get_ip(f'{self.catch_target_url}{i}'):
-                client['Ip_Pool']['pool'].insert_one(j)
-            time.sleep(random.randint(1, 3))
+            client['Ip_Pool']['pool'].insert_many(self.__get_ip(f'{self.catch_target_url}{i}', i))
+            time.sleep(random.randint(1, 2))
             print(f'第{i + 1}页写入完成！')
 
 
@@ -70,7 +69,7 @@ class IpPool(object):
         }
         return new_dict
 
-    def __get_ip(self, url):
+    def __get_ip(self, url, page_num):
         dict_list = []
         text = requests.get(url, headers=self.headers).text
         soup = BeautifulSoup(text, 'lxml')
@@ -79,6 +78,7 @@ class IpPool(object):
         for num, data in enumerate(deal):
             if (num + 1) % 7 == 0:
                 new_dict[data['data-title']] = data.text
+                new_dict['_id'] = f'{page_num}_{num + 1}'
                 dict_list.append(new_dict)
                 new_dict = IpPool.init_dict()
             else:
