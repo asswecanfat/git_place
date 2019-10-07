@@ -22,7 +22,6 @@ class DowloadBook(object):
         soup = BeautifulSoup(text, 'lxml')
         deal = soup.find_all('li', class_='col-4')
         book_name = soup.find('div', class_='book-meta').h1.text
-        # print(book_name.h1.text)
         for i in deal:
             url_list.append(i.a['href'])
             title_list.append(i.a['title'])
@@ -37,7 +36,6 @@ class DowloadBook(object):
     def get_book(self):
         book_name, url_list, title_list = self.__get_url_data()
         text_itetor = self.__get_text(url_list)
-        # self.__deal_text(next(text_itetor))
         with open(f'{self.book_path}\\{book_name}.txt', 'w', encoding='utf-8') as f:
             for num, data in enumerate(text_itetor):
                 f.write('{}{}{}'.format(" " * 10, title_list[num], '\n'))
@@ -54,7 +52,6 @@ class DowloadBook(object):
                 _text = '{}{}{}'.format(i.text[:self.step], '\n', i.text[self.step:])
             first_text += '{}{}{}'.format('  ', _text, '\n')
         return first_text
-
 
     def __repr__(self):
         return f'DowloadBook()'
