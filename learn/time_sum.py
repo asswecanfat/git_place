@@ -12,6 +12,8 @@ class TimeSum(object):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.run_time = float(time.time() - self.time)
+        print('%.2f' % self.run_time)
 
-    def time_print(self):
-        print(f'code running Time:{self.run_time:.2f}s')
+    def __repr__(self):
+        return f'{self.__name__}()'
+
