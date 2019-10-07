@@ -6,7 +6,6 @@ def add(a, b):
 
 
 if __name__ == '__main__':
-    with TimeSum() as f:
+    with TimeSum():
         for i in range(1000000):
             add(i, i)
-    f.time_print()

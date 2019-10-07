@@ -12,8 +12,19 @@ class TimeSum(object):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.run_time = float(time.time() - self.time)
-        print('%.2f' % self.run_time)
+        if self.run_time > 3600:
+            h = self.run_time // 3600
+            m = self.run_time % 3600 // 60
+            s = self.run_time % 60
+            print(f'该代码共用了：{h}h,{m}m,{s:.2f}s')
+            return None
+        if self.run_time > 60:
+            m = self.run_time // 60
+            s = self.run_time % 60
+            print(f'该代码共用了：{m}m,{s:.2f}s')
+            return None
+        print(f'该代码使用了：{self.run_time:.2f}s')
 
     def __repr__(self):
-        return f'{self.__name__}()'
+        return f'{self.__name__!r}()'
 
