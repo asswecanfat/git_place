@@ -19,10 +19,12 @@ class Creat(object):
         self.start_level += 1
         if self.start_level == self.level:
             return random.randint(0, self.max_num)
-        math_op = '{}{}{}{}{}'.format(
+        math_op = '{}{}{}{}{}{}{}'.format(
             self.__brackets(random_num, 0),  # '('
             random.randint(0, self.max_num),  # 随机数
+            ' ',
             self.operator[random.randint(1, 4)],  # 随机选取运算符
+            ' ',
             self.creator(),  # 'xx +|-|*|/ xx'
             self.__brackets(random_num, 1),  # ')'
         )
@@ -36,11 +38,13 @@ class Creat(object):
                 return '('
         return ''
 
+    def deal_math_op(self, math_op):  # 检测数学表达式的合法性和处理假分数
+        pass
 
     def __repr__(self):
         return f'Creat(max_num={self.max_num}, formula_num={self.formula_num})'
 
 
 if __name__ == '__main__':
-    t = Creat(10, 10)
+    t = Creat(50, 10)
     print(t.creator())
