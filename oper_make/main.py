@@ -22,7 +22,7 @@ import click
 def run(**kwargs):
     if kwargs['n'] is not None and kwargs['r'] is None:
         click.echo('-r指令必须执行，且必须要有一个参数！！')
-    if not kwargs['e'] and kwargs['a']:
+    if kwargs['e'] is None or kwargs['a'] is None:
         click.echo('-e和-a指令后必须要有参数！！')
 
 if __name__ == '__main__':
