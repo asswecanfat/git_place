@@ -1,6 +1,5 @@
 from collections import deque
 
-
 class AnalyOp(object):  # 使用逆波兰表达式解析
     OPERATOR = ('+', '-', '*', '÷', '(', ')')  # 运算符常量
 
