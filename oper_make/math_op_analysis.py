@@ -15,6 +15,10 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
             '÷': 2,
         }
 
+    def __clear_deque(self):
+        self.postfix_deque.clear()
+        self.operators_deque.clear()
+
     def mathop_to_postfix(self):
         """将中缀表达式转换为后缀表达式。"""
         for i in self.math_op:
@@ -67,10 +71,27 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
         while self.operators_deque:
             self.postfix_deque.append(self.operators_deque.pop())
 
+    def parse_out_son(self):
+        """只解析出有优先级的子式"""
+        num_deque = deque()
+        son_op_list = []
+        for i in self.postfix_deque:
+            if self.__is_num(i):
+                num_deque.append(i)
+            else:
+                right_num = num_deque.pop()
+                left_num = num_deque.pop()
+                son_op = f'{left_num}{i}{right_num}'
+                son_op_list.append(son_op)
+                num_deque.append(str(eval(son_op)))
+        self.__clear_deque()
+        return son_op_list
+
     def __repr__(self):
         return f'AnalyOp(math_op={self.math_op})'
 
 
 if __name__ == '__main__':
-    a = AnalyOp('1 ÷ 2 - 3')
+    a = AnalyOp('1 + (2 * 2) + 3')
     print(a.mathop_to_postfix())
+    print(a.parse_out_son())
