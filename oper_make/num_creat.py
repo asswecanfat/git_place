@@ -19,7 +19,7 @@ class NumCreat(object):
     @staticmethod
     def fake2real_2_show(fake_num):
         molecule, denominator = list(map(int, re.findall(r'\d+', fake_num)))  # 分子，分母
-        s_molecule, s_denominator = NumCreat.is_simplest_fraction(molecule, denominator)
+        s_molecule, s_denominator = NumCreat.gcd(molecule, denominator)
         if s_denominator > s_molecule:
             return f"{Fraction(s_molecule, s_denominator)}"
         else:
@@ -28,13 +28,13 @@ class NumCreat(object):
             return f"{s_molecule // s_denominator}'{Fraction(s_molecule % s_denominator, s_denominator)}"
 
     @staticmethod
-    def is_simplest_fraction(molecule, denominator):  # 最简化分数
-        min = (lambda x, y: x if x < y else y)(molecule, denominator)
-        hcf = 1  # 最大公约数，默认为1
-        for i in range(1, min + 1):
-            if not (molecule % i or denominator % i):
-                hcf = i
-        return molecule // hcf, denominator // hcf
+    def gcd(molecule, denominator):  # 最简化分数
+        max_num, min_num = (molecule, denominator) if molecule > denominator else (denominator, molecule)
+        while True:
+            remainder = max_num % min_num
+            if remainder == 0:
+                return molecule // min_num, denominator // min_num
+            max_num, min_num = min_num, remainder
 
     def __repr__(self):
         return f'NumCreat(max_num={self.max_num!r}'
@@ -42,4 +42,4 @@ class NumCreat(object):
 
 if __name__ == '__main__':
     t = NumCreat(50)
-    print(t.fake2real_2_show('1/5'))
+    print(t.fake2real_2_show('2/2'))
