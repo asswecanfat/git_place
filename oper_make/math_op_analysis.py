@@ -1,5 +1,7 @@
 from collections import deque
 from fractions import Fraction
+from op_error import ExceptError, ReduceError
+import re
 
 
 class AnalyOp(object):  # 使用逆波兰表达式解析
@@ -21,7 +23,7 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
         self.postfix_deque.clear()
         self.operators_deque.clear()
 
-    def mathop_to_postfix(self):
+    def __mathop_to_postfix(self):
         """将中缀表达式转换为后缀表达式。"""
         for i in self.math_op:
             if self.__is_num(i):
@@ -34,7 +36,6 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
                 else:
                     self.__compare_and_pop(i)
         self.__pop_rest()
-        return self.postfix_deque
 
     def __is_num(self, text):  # 判断是否为数字
         if '/' in text:
@@ -75,8 +76,9 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
         while self.operators_deque:
             self.postfix_deque.append(self.operators_deque.pop())
 
-    def parse_out_son(self):
+    def parse_out_son(self, ):
         """只解析出有优先级的子式"""
+        self.__mathop_to_postfix()
         num_deque = deque()
         son_op_list = []
         answer = None
@@ -101,6 +103,20 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
             '÷': lambda x, y: Fraction(x) / Fraction(y),
         }
         return operation_dict[operator]
+
+    @staticmethod
+    def check_math_op(math_op):
+        mop = AnalyOp(math_op)
+        op_list, answer = mop.parse_out_son()
+        for i in op_list:
+            left_num, right_num = re.split(r'[+\-*÷]', i)
+            if '÷' in i:
+                if Fraction(left_num) > Fraction(right_num):
+                    raise ExceptError
+            if '-' in i:
+                if Fraction(left_num) < Fraction(right_num):
+                    raise ReduceError
+        return op_list
 
     def __repr__(self):
         return f'AnalyOp(math_op={self.math_op})'

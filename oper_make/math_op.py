@@ -1,4 +1,6 @@
 import random
+from op_error import ExceptError, ReduceError
+from math_op_analysis import AnalyOp
 
 
 class Creat(object):
@@ -64,9 +66,13 @@ class Creat(object):
         while op_num < self.formula_num:
             math_op = self.creator()
             if self.__check_math_op(math_op):
-                yield math_op
-                op_num += 1
-                self.__init_variable()
+                try:
+                    op_list = AnalyOp.check_math_op(math_op)
+                    yield math_op
+                    op_num += 1
+                except (ExceptError, ReduceError):
+                    pass
+            self.__init_variable()
 
     def __init_variable(self):  # 初始化以下值
         self.start_level = 0
