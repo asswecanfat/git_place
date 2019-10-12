@@ -1,11 +1,13 @@
 from collections import deque
+from fractions import Fraction
 
 
 class AnalyOp(object):  # 使用逆波兰表达式解析
     OPERATOR = ('+', '-', '*', '÷', '(', ')')  # 运算符常量
 
     def __init__(self, math_op):
-        self.math_op = math_op.replace(' ', '')
+        self.math_op = math_op.replace('(', '( ').replace(')', ' )')
+        self.math_op = self.math_op.split()
         self.postfix_deque = deque()  # 后缀表达式栈
         self.operators_deque = deque()  # 运算符栈
         self.operators_priority = {  # 运算符优先级
@@ -35,6 +37,8 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
         return self.postfix_deque
 
     def __is_num(self, text):  # 判断是否为数字
+        if '/' in text:
+            return True
         return text.isdigit()
 
     def __pop_to_left_bracket(self):
@@ -75,6 +79,7 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
         """只解析出有优先级的子式"""
         num_deque = deque()
         son_op_list = []
+        answer = None
         for i in self.postfix_deque:
             if self.__is_num(i):
                 num_deque.append(i)
@@ -83,15 +88,25 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
                 left_num = num_deque.pop()
                 son_op = f'{left_num}{i}{right_num}'
                 son_op_list.append(son_op)
-                num_deque.append(str(eval(son_op)))
+                answer = self.__operation_func(i)(left_num, right_num)
+                num_deque.append(answer)
         self.__clear_deque()
-        return son_op_list
+        return son_op_list, str(answer)
+
+    def __operation_func(self, operator):  # 选择运算方法
+        operation_dict = {
+            '+': lambda x, y: Fraction(x) + Fraction(y),
+            '-': lambda x, y: Fraction(x) - Fraction(y),
+            '*': lambda x, y: Fraction(x) * Fraction(y),
+            '÷': lambda x, y: Fraction(x) / Fraction(y),
+        }
+        return operation_dict[operator]
 
     def __repr__(self):
         return f'AnalyOp(math_op={self.math_op})'
 
 
 if __name__ == '__main__':
-    a = AnalyOp('1 + (2 * 2) + 3')
+    a = AnalyOp('(1/2 ÷ 2) + (3 * 6)')
     print(a.mathop_to_postfix())
     print(a.parse_out_son())
