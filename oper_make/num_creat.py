@@ -31,4 +31,3 @@ class NumCreat(object):
 if __name__ == '__main__':
     t = NumCreat(50)
     print(str(t.choices_num()))
-    print(t.fake2real_2_show('2/2'))

@@ -1,6 +1,7 @@
 from collections import deque
 from fractions import Fraction
 from op_error import ExceptError, ReduceError
+from copy import deepcopy
 import re
 
 
@@ -23,10 +24,10 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
         self.postfix_deque.clear()
         self.operators_deque.clear()
 
-    def __mathop_to_postfix(self):
+    def mathop_to_postfix(self):
         """将中缀表达式转换为后缀表达式。"""
         for i in self.math_op:
-            if self.__is_num(i):
+            if self.is_num(i):
                 self.postfix_deque.append(i)
             elif i in self.OPERATOR:
                 if i == '(':
@@ -36,8 +37,10 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
                 else:
                     self.__compare_and_pop(i)
         self.__pop_rest()
+        return self.postfix_deque
 
-    def __is_num(self, text):  # 判断是否为数字
+    @staticmethod
+    def is_num(text):  # 判断是否为数字
         if '/' in text:
             return True
         return text.isdigit()
@@ -76,26 +79,27 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
         while self.operators_deque:
             self.postfix_deque.append(self.operators_deque.pop())
 
-    def parse_out_son(self, ):
+    def parse_out_son(self):
         """只解析出有优先级的子式"""
-        self.__mathop_to_postfix()
+        postfix = deepcopy(self.mathop_to_postfix())
         num_deque = deque()
         son_op_list = []
         answer = None
         for i in self.postfix_deque:
-            if self.__is_num(i):
+            if self.is_num(i):
                 num_deque.append(i)
             else:
                 right_num = num_deque.pop()
                 left_num = num_deque.pop()
                 son_op = f'{left_num}{i}{right_num}'
                 son_op_list.append(son_op)
-                answer = self.__operation_func(i)(left_num, right_num)
+                answer = self.operation_func(i)(left_num, right_num)
                 num_deque.append(answer)
         self.__clear_deque()
-        return son_op_list, str(answer)
+        return son_op_list, postfix, str(answer)
 
-    def __operation_func(self, operator):  # 选择运算方法
+    @staticmethod
+    def operation_func(operator):  # 选择运算方法
         operation_dict = {
             '+': lambda x, y: Fraction(x) + Fraction(y),
             '-': lambda x, y: Fraction(x) - Fraction(y),
@@ -107,16 +111,16 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
     @staticmethod
     def check_math_op(math_op):
         mop = AnalyOp(math_op)
-        op_list, answer = mop.parse_out_son()
+        op_list, postfix, answer = mop.parse_out_son()
         for i in op_list:
             left_num, right_num = re.split(r'[+\-*÷]', i)
             if '÷' in i:
-                if Fraction(left_num) > Fraction(right_num):
+                if Fraction(left_num) > Fraction(right_num) or right_num == 0:
                     raise ExceptError
             if '-' in i:
                 if Fraction(left_num) < Fraction(right_num):
                     raise ReduceError
-        return op_list
+        return postfix, answer
 
     def __repr__(self):
         return f'AnalyOp(math_op={self.math_op})'

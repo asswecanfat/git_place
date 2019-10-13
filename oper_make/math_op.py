@@ -1,6 +1,9 @@
 import random
 from op_error import ExceptError, ReduceError
 from math_op_analysis import AnalyOp
+from num_creat import NumCreat
+from wirte_file import write_in_file
+from data_sturct import DataSave
 
 
 class Creat(object):
@@ -20,7 +23,7 @@ class Creat(object):
 
     def creator(self) -> str:
         math_op = '{}{}{}{}{}'.format(
-            self.__creat_math_op(self.first_level),  # 随机数
+            self.__creat_math_op(self.first_level),  # 'xx +|-|*|/ xx'
             ' ',
             self.operator[random.randint(1, 4)],  # 随机选取运算符
             ' ',
@@ -36,7 +39,7 @@ class Creat(object):
             return random.randint(0, self.max_num)
         math_op = '{}{}{}{}{}{}{}'.format(
             self.__brackets(random_num, 0),  # '('
-            random.randint(0, self.max_num),  # 随机数
+            NumCreat(self.max_num).choices_num(),  # 随机数
             ' ',
             self.operator[random.randint(1, 4)],  # 随机选取运算符
             ' ',
@@ -45,9 +48,6 @@ class Creat(object):
         )
         self.start_level = 0
         return math_op
-
-    def num_choice(self):  # 选择自然数还是真分数还是假分数
-        pass
 
     def __brackets(self, random_num: int, choice: int) -> str:  # 决定括号是否填入
         if random_num:
@@ -62,16 +62,16 @@ class Creat(object):
         return self.creator()
 
     def creat_more(self):  # 迭代器
-        op_num = 1
+        op_num = 0
         while op_num < self.formula_num:
             math_op = self.creator()
-            if self.__check_math_op(math_op):
-                try:
-                    op_list = AnalyOp.check_math_op(math_op)
-                    yield math_op
-                    op_num += 1
-                except (ExceptError, ReduceError):
-                    pass
+            try:
+                print(math_op)
+                postfix, answer = AnalyOp.check_math_op(math_op)
+                yield (math_op, list(postfix), answer)
+                op_num += 1
+            except (ExceptError, ReduceError, ZeroDivisionError):
+                pass
             self.__init_variable()
 
     def __init_variable(self):  # 初始化以下值
@@ -80,22 +80,13 @@ class Creat(object):
         self.first_level = random.randint(1, self.level - 1)
         self.second_level = self.level - self.first_level
 
-    def __check_math_op(self, math_op: str) -> bool:  # 检测数学表达式的合法性
-        new_op = math_op.replace('÷', '/')
-        try:
-            if eval(new_op) < 0:
-                return False
-            else:
-                return True
-        except ZeroDivisionError:
-            return False
-
     def __repr__(self):
         return f'Creat(max_num={self.max_num}, formula_num={self.formula_num})'
 
 
 if __name__ == '__main__':
     t = Creat(50, 10)
-    for i in t.creat_more():
-        print(i)
-    print(t.math_op)
+    data_save = DataSave().mathop_dict
+    for num, (math_op, postfix, answer) in enumerate(t.creat_more()):
+        print(math_op, postfix, answer)
+        write_in_file(math_op, postfix, answer, data_save, num + 1)
