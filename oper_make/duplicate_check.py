@@ -24,7 +24,7 @@ def creat_tree(postfix_deque):  # 创建统一的二叉树
                       right_child=max_num,
                       left_child=min_num,
                       answer=AnalyOp.operation_func(i)(min_num.answer, max_num.answer),
-                      _min=min_num.min,)
+                      _min=min_num._min,)
             node.append(op)
     return node.pop()
 

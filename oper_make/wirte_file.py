@@ -4,7 +4,6 @@ from duplicate_check import creat_tree, is_equal
 
 
 def deal_math_op(math_op, postfix, answer, data_save):
-    print(postfix)
     if answer in data_save:
         if not data_save[answer]:
             data_save[answer].append(creat_tree(postfix))
@@ -32,15 +31,15 @@ def deal_answer(answer):
     return answer
 
 
-def write_in_file(math_op, postfix, answer, data_save, num):
-    math_op = deal_math_op(math_op, postfix, answer, data_save)
+def write_in_file(math_op, answer, num):
     answer = deal_answer(answer)
-    with open(r'./Exercises.txt', 'a+', encoding='utf-8') as q:
-        with open(r'./Answers.txt', 'a+', encoding='utf-8') as a:
-            q.write('{}.{} = {}'.format(num,
-                                        math_op,
-                                        '\n',))
-            a.write('{}.{}{}'.format(num,
-                                     answer,
-                                     '\n'))
-    return True
+    if math_op is not None:
+        with open(r'./Exercises.txt', 'a+', encoding='utf-8') as q:
+            with open(r'./Answers.txt', 'a+', encoding='utf-8') as a:
+                q.write('{}.{} = {}'.format(num,
+                                            math_op,
+                                            '\n',))
+                a.write('{}.{}{}'.format(num,
+                                         answer,
+                                         '\n'))
+        return True

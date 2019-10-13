@@ -2,8 +2,9 @@ import random
 from op_error import ExceptError, ReduceError
 from math_op_analysis import AnalyOp
 from num_creat import NumCreat
-from wirte_file import write_in_file
+from wirte_file import write_in_file, deal_math_op
 from data_sturct import DataSave
+from learn.time_sum import TimeSum
 
 
 class Creat(object):
@@ -61,15 +62,16 @@ class Creat(object):
     def math_op(self) -> str:  # 属性
         return self.creator()
 
-    def creat_more(self):  # 迭代器
+    def creat_more(self, data_save):  # 迭代器
         op_num = 0
         while op_num < self.formula_num:
             math_op = self.creator()
             try:
-                print(math_op)
                 postfix, answer = AnalyOp.check_math_op(math_op)
-                yield (math_op, list(postfix), answer)
-                op_num += 1
+                math_op = deal_math_op(math_op, list(postfix), answer, data_save)
+                if math_op:
+                    yield (math_op, answer)
+                    op_num += 1
             except (ExceptError, ReduceError, ZeroDivisionError):
                 pass
             self.__init_variable()
@@ -85,8 +87,8 @@ class Creat(object):
 
 
 if __name__ == '__main__':
-    t = Creat(50, 10)
+    t = Creat(50, 10000)
     data_save = DataSave().mathop_dict
-    for num, (math_op, postfix, answer) in enumerate(t.creat_more()):
-        print(math_op, postfix, answer)
-        write_in_file(math_op, postfix, answer, data_save, num + 1)
+    with TimeSum():
+        for num, (math_op, answer) in enumerate(t.creat_more(data_save)):
+            write_in_file(math_op, answer, num + 1)
