@@ -1,6 +1,6 @@
 import re
 from num_creat import NumCreat
-from duplicate_check import creat_tree, isEqual
+from duplicate_check import creat_tree, is_equal
 
 
 def deal_math_op(math_op, postfix, answer, data_save):
@@ -11,7 +11,7 @@ def deal_math_op(math_op, postfix, answer, data_save):
         else:
             new_tree = creat_tree(postfix)
             for i in data_save[answer]:
-                if isEqual(i, new_tree):
+                if is_equal(i, new_tree):
                     return None
     else:
         data_save[answer] = []
