@@ -1,4 +1,4 @@
-class Node(object):
+class Node(object):  # 二叉树的结点
     def __init__(self, operator=None, num=None, right_child=None, left_child=None, answer=None, _min=None):
         self.operator = operator
         self.num = num
@@ -8,6 +8,6 @@ class Node(object):
         self._min = _min
 
 
-class DataSave(object):
+class DataSave(object):  # 题目数据流
     mathop_dict = {
     }
