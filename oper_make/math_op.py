@@ -4,7 +4,7 @@ from math_op_analysis import AnalyOp
 from num_creat import NumCreat
 from wirte_file import write_in_file, deal_math_op
 from data_sturct import DataSave
-from learn.time_sum import TimeSum
+# from learn.time_sum import TimeSum
 
 
 class Creat(object):
@@ -89,6 +89,7 @@ class Creat(object):
 if __name__ == '__main__':
     t = Creat(1, 10000)
     data_save = DataSave().mathop_dict
-    with TimeSum():
-        for num, (math_op, answer) in enumerate(t.creat_more(data_save)):
-            write_in_file(math_op, answer, num + 1)
+    #with TimeSum():
+    '''for num, (math_op, answer) in enumerate(t.creat_more(data_save)):
+        write_in_file(math_op, answer, num + 1)'''
+    write_in_file(t, data_save)
