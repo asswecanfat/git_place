@@ -87,7 +87,7 @@ class Creat(object):
 
 
 if __name__ == '__main__':
-    t = Creat(50, 10000)
+    t = Creat(1, 10000)
     data_save = DataSave().mathop_dict
     with TimeSum():
         for num, (math_op, answer) in enumerate(t.creat_more(data_save)):
