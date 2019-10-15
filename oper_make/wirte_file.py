@@ -39,14 +39,14 @@ def write_in_file(creat, data_save):
                 answer = deal_answer(answer)
                 q.write('{}.{} = {}'.format(num + 1,
                                             math_op,
-                                            '\n',))
+                                            '\n', ))
                 a.write('{}.{}{}'.format(num + 1,
                                          answer,
                                          '\n'))
                 print('{}{}{}'.format('\r第', num + 1, '条题目已生成！！'), sep='', end='', flush=True)
 
 
-def compare_2_file(f1 ,f2):  # f1是题目文件，f2是答案文件
+def compare_2_file(f1, f2):  # f1是题目文件，f2是答案文件
     text1 = open(f1, 'rb').read()
     text2 = open(f2, 'rb').read()
     coding1 = chardet.detect(text1)['encoding']
@@ -59,10 +59,8 @@ def compare_2_file(f1 ,f2):  # f1是题目文件，f2是答案文件
                     right_answer = []
                     wrong_num = 0
                     wrong_answer = []
-                    f1_list = list(map(lambda x: re.split(r'\..+= ', x), f1.readlines()))
-                    f2_list = list(map(lambda x: re.split('\.', x), f2.readlines()))
-                    f1_dict = {i[0]:i[1] for i in f1_list}
-                    f2_dict = {i[0]:i[1] for i in f2_list}
+                    f1_dict = _deal_lsit(f1)
+                    f2_dict = _deal_lsit(f2)
                     for i in f1_dict.keys():
                         if f1_dict[i] == f2_dict[i]:
                             right_num += 1
@@ -80,4 +78,6 @@ def compare_2_file(f1 ,f2):  # f1是题目文件，f2是答案文件
                     g.write('){}'.format('\n'))
 
 
-
+def _deal_lsit(f) -> dict:
+    f_list = list(map(lambda x: re.split(r'\. ', x), f.readlines()))
+    return {i[0]: i[1].rstrip('\n') for i in f_list}
