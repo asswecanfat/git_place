@@ -2,8 +2,7 @@ import random
 from op_error import ExceptError, ReduceError
 from math_op_analysis import AnalyOp
 from num_creat import NumCreat
-from wirte_file import write_in_file, deal_math_op
-from data_sturct import DataSave
+from wirte_file import deal_math_op
 
 
 class Creat(object):
@@ -87,6 +86,8 @@ class Creat(object):
 
 '''if __name__ == '__main__':
     from learn.time_sum import TimeSum
+    from data_sturct import DataSave
+    from wirte_file import write_in_file
     t = Creat(50, 10000)
     data_save = DataSave().mathop_dict
     with TimeSum():
