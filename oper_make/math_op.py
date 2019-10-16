@@ -81,7 +81,7 @@ class Creat(object):
         self.second_level = self.level - self.first_level
 
     def __repr__(self):
-        return f'Creat(max_num={self.max_num}, formula_num={self.formula_num})'
+        return f'Creat(max_num={self.max_num!r}, formula_num={self.formula_num!r})'
 
 
 '''if __name__ == '__main__':

@@ -47,20 +47,17 @@ def write_in_file(creat, data_save):
 
 
 def compare_2_file(f1, f2):  # f1是题目文件，f2是答案文件
-    text1 = open(f1, 'rb').read()
-    text2 = open(f2, 'rb').read()
-    coding1 = chardet.detect(text1)['encoding']
-    coding2 = chardet.detect(text2)['encoding']
+    coding1 = _get_coding(f1)
+    coding2 = _get_coding(f2)
     if coding1 is not None and coding2 is not None:
         with open(f1, 'r', encoding=coding1) as f1:
             with open(f2, 'r', encoding=coding2) as f2:
-                with open(r'.\Grade.txt', 'a', encoding='utf-8') as g:
+                with open(r'.\Grade.txt', 'w', encoding='utf-8') as g:
                     right_num = 0
                     right_answer = []
                     wrong_num = 0
                     wrong_answer = []
                     f1_dict = _deal_lsit(f1)
-                    print(f1_dict)
                     f2_dict = _deal_lsit(f2)
                     for i in f1_dict.keys():
                         if f1_dict[i] == f2_dict[i]:
@@ -80,6 +77,10 @@ def compare_2_file(f1, f2):  # f1是题目文件，f2是答案文件
 
 
 def _deal_lsit(f) -> dict:
-    f_list = list(map(lambda x: re.split(r'\.(.+= ?){0,1}', x), f.readlines()))  # 用于分开题目序号和答案
+    f_list = list(map(lambda x: re.split(r'\.(.+= ?)?', x), f.readlines()))  # 用于分开题目序号和答案
     return {i[0]: i[2].rstrip('\n') for i in f_list}
 
+
+def _get_coding(f):
+    text = open(f, 'rb').read()
+    return chardet.detect(text)['encoding']

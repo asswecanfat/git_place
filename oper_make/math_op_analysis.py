@@ -20,7 +20,7 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
             '÷': 2,
         }
 
-    def __clear_deque(self):
+    def __clear_deque(self):  # 用于清空栈
         self.postfix_deque.clear()
         self.operators_deque.clear()
 
@@ -109,7 +109,7 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
         return operation_dict[operator]
 
     @staticmethod
-    def check_math_op(math_op):
+    def check_math_op(math_op):  # 检查分解成的子式的合法性
         mop = AnalyOp(math_op)
         op_list, postfix, answer = mop.parse_out_son()
         for i in op_list:
@@ -122,8 +122,8 @@ class AnalyOp(object):  # 使用逆波兰表达式解析
                     raise ReduceError
         return postfix, answer
 
-    def __repr__(self):
-        return f'AnalyOp(math_op={self.math_op})'
+    def __repr__(self):  # 用于测试
+        return f'AnalyOp(math_op={self.math_op!r})'
 
 
 if __name__ == '__main__':

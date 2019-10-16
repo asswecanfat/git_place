@@ -23,7 +23,6 @@ class NumCreat(object):
             return Fraction(molecule, denominator)
         return f"{molecule // denominator}'{Fraction(molecule % denominator, denominator)}"
 
-
     def __repr__(self):
         return f'NumCreat(max_num={self.max_num!r}'
 
