@@ -4,7 +4,7 @@ from duplicate_check import creat_tree, is_equal
 import chardet
 
 
-def deal_math_op(math_op, postfix, answer, data_save):
+def deal_math_op(math_op, postfix, answer, data_save):  # 处理数学表达式以便于查重
     if answer in data_save:
         if not data_save[answer]:
             data_save[answer].append(creat_tree(postfix))
@@ -19,20 +19,20 @@ def deal_math_op(math_op, postfix, answer, data_save):
     return replace_math_op(math_op)
 
 
-def replace_math_op(math_op):
+def replace_math_op(math_op):  # 处理数学表达式中的假分数
     faker_list = re.findall(r'\d+/\d+', math_op)
     for i in faker_list:
         math_op = math_op.replace(i, str(NumCreat.fake2real_2_show(i)))
     return math_op
 
 
-def deal_answer(answer):
+def deal_answer(answer):  # 处理答案的假分数
     if '/' in answer:
         return NumCreat.fake2real_2_show(answer)
     return answer
 
 
-def write_in_file(creat, data_save):
+def write_in_file(creat, data_save):  # 写入文件
     with open(r'./Exercises.txt', 'a', encoding='utf-8') as q:
         with open(r'./Answers.txt', 'a', encoding='utf-8') as a:
             for num, (math_op, answer) in enumerate(creat.creat_more(data_save)):
@@ -81,6 +81,6 @@ def _deal_lsit(f) -> dict:
     return {i[0]: i[2].rstrip('\n') for i in f_list}
 
 
-def _get_coding(f):
+def _get_coding(f):  # 处理文件的编码，以防报错
     text = open(f, 'rb').read()
     return chardet.detect(text)['encoding']
