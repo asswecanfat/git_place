@@ -60,13 +60,14 @@ def compare_2_file(f1, f2):  # f1是题目文件，f2是答案文件
                     wrong_num = 0
                     wrong_answer = []
                     f1_dict = _deal_lsit(f1)
+                    print(f1_dict)
                     f2_dict = _deal_lsit(f2)
                     for i in f1_dict.keys():
                         if f1_dict[i] == f2_dict[i]:
                             right_num += 1
                             right_answer.append(i)
                         else:
-                            if f1_dict[i] != '\n':
+                            if f1_dict[i] != '':
                                 wrong_num += 1
                                 wrong_answer.append(i)
                     g.write(f'Correct: {right_num} ({right_answer[0]}')
@@ -79,5 +80,6 @@ def compare_2_file(f1, f2):  # f1是题目文件，f2是答案文件
 
 
 def _deal_lsit(f) -> dict:
-    f_list = list(map(lambda x: re.split(r'\. ', x), f.readlines()))
-    return {i[0]: i[1].rstrip('\n') for i in f_list}
+    f_list = list(map(lambda x: re.split(r'\.(.+= ?){0,1}', x), f.readlines()))  # 用于分开题目序号和答案
+    return {i[0]: i[2].rstrip('\n') for i in f_list}
+
