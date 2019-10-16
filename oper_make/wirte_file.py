@@ -33,8 +33,8 @@ def deal_answer(answer):  # 处理答案的假分数
 
 
 def write_in_file(creat, data_save):  # 写入文件
-    with open(r'./Exercises.txt', 'a', encoding='utf-8') as q:
-        with open(r'./Answers.txt', 'a', encoding='utf-8') as a:
+    with open(r'./Exercises.txt', 'w', encoding='utf-8') as q:
+        with open(r'./Answers.txt', 'w', encoding='utf-8') as a:
             for num, (math_op, answer) in enumerate(creat.creat_more(data_save)):
                 answer = deal_answer(answer)
                 q.write('{}.{} = {}'.format(num + 1,
@@ -43,7 +43,8 @@ def write_in_file(creat, data_save):  # 写入文件
                 a.write('{}.{}{}'.format(num + 1,
                                          answer,
                                          '\n'))
-                print('{}{}{}'.format('\r第', num + 1, '条题目已生成！！'), sep='', end='', flush=True)
+                print('{}{}{}'.format('\r', num + 1, '条题目已生成！！'), sep='', end='', flush=True)
+            print('\n操作完成！！', end='')
 
 
 def compare_2_file(f1, f2):  # f1是题目文件，f2是答案文件

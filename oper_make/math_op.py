@@ -84,7 +84,7 @@ class Creat(object):
         return f'Creat(max_num={self.max_num!r}, formula_num={self.formula_num!r})'
 
 
-'''if __name__ == '__main__':
+if __name__ == '__main__':
     from learn.time_sum import TimeSum
     from data_sturct import DataSave
     from wirte_file import write_in_file
@@ -92,4 +92,4 @@ class Creat(object):
     data_save = DataSave().mathop_dict
     with TimeSum():
         write_in_file(t, data_save)
-    # write_in_file(t, data_save)'''
+    # write_in_file(t, data_save)

@@ -5,6 +5,7 @@ from fractions import Fraction
 
 
 def creat_tree(postfix_deque):  # 创建统一的二叉树
+    """_min为树结点的最小标志位，左子树小，右子树大"""
     node = deque()
     for i in postfix_deque:
         if AnalyOp.is_num(i):
