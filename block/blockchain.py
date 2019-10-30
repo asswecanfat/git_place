@@ -82,5 +82,11 @@ class BlockChain(object):  # 管理链
         :param proof: <int>现在的证明
         :return: <bool>是否包含4个0
         """
-        guess_hash = hashlib.sha256(f'{last_proof}{proof}'.encode()).hexdiest()
+        guess_hash = hashlib.sha256(f'{last_proof}{proof}'.encode()).hexdigest()
         return guess_hash[-4] == '0000'
+
+    def get_chain(self):
+        return self._chain
+
+    def __repr__(self):
+        return f'{self.__class__.__name__!r}()'
