@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <table border="l" width="1000">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AGE</th>
+        </tr>
+        {% for n in data %}
+        <tr>
+            {% if n.id % 2 %}
+                <td style="color: blue;background:#ffffff;">{{ n.id }}</td>
+            {% else %}
+                <td style="color: aqua;background:#ffffff;">{{ n.id }}</td>
+            {% endif %}
+            <td style="color: aqua;background:#ffffff;">{{ n.name }}</td>
+            <td>{{ n.age }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {{ content|safe }}  {# 过滤器 #}
+    {{ content|safe|truncate(8) }}
+</body>
+</html>

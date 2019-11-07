@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+    {{title}}
+    {# 注释 #}
+    {# <p>{{ data[0]['id'] }}--------------{{ data[0]['name'] }}</p>
+    <p>{{ data.0.id }}--------------{{ data.0.name }}</p>  {# 优先使用这种，性能好 #}
+    <p>{{ d.0.id }}</p>
+    <p>输出项目的配置信息</p>
+    <p>{{ config.DEBUG }}</p>
+    <p>请求对象中的数据</p>
+    <p>username={{ request.args.get('username') }}</p>
+</body>
+</html>
