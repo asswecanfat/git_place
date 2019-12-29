@@ -56,13 +56,33 @@ class DBMethod(object):
             self._connect.rollback()
         return result
 
-    # 删<--(管理员，顾客删除收藏)
-    def delete_data(self):
+    def add_collections(self, u_id, song_id):
         try:
-
+            time = re.sub(r'\.\d+', '', str(datetime.today()))
+            result = self._cursor.execute('insert into collection values(%(u_id)s,'
+                                          '%(son_id)s,'
+                                          '%(time)s)', {'u_id': u_id,
+                                                        'son_id': song_id,
+                                                        'time': time})
             self._connect.commit()
-        except:
+        except BaseException as e:
+            # 出错就回滚
+            result = False
+            print(e)
             self._connect.rollback()
+        return result
+
+    # 删<--(管理员，顾客删除收藏)
+    def delete_collection(self, u_id, song_id=None):
+        sql = f'delete from collection where u_id={u_id} and son_id={song_id}'
+        try:
+            self._cursor.execute(sql)
+            self._connect.commit()
+            result = True
+        except:
+            result = False
+            self._connect.rollback()
+        return result
 
     # 改<--管理员
     def change_data(self):
@@ -82,7 +102,7 @@ class DBMethod(object):
 
     # 查<--所有人
     def _find_data(self, arg):
-        sql = 'select so_name,song_length from song,singer where song.singer_i=singer.singer_id and ' \
+        sql = 'select song_id,so_name,song_length from song,singer where song.singer_i=singer.singer_id and ' \
               f'{self._target}=%(pin)s'
         self._cursor.execute(sql, {'pin': arg})
         return self._cursor.fetchall()
