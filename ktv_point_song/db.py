@@ -31,7 +31,7 @@ class DBMethod(object):
     def __enter__(self):
         return self
 
-    # 增<--(管理员，VIP)
+    # 增<--(管理员，注册)
     def add_user(self, user_name, u_password, real_name, u_sex):
         num_sql = 'select count(*) from ktv_user'
         try:
@@ -73,7 +73,7 @@ class DBMethod(object):
         return result
 
     # 删<--(管理员，顾客删除收藏)
-    def delete_collection(self, u_id, song_id=None):
+    def delete_collection(self, u_id, song_id):
         sql = f'delete from collection where u_id={u_id} and son_id={song_id}'
         try:
             self._cursor.execute(sql)
@@ -85,12 +85,16 @@ class DBMethod(object):
         return result
 
     # 改<--管理员
-    def change_data(self):
+    def insert_sql(self, sql):
+        sql = sql
         try:
-
+            self._cursor.execute(sql)
             self._connect.commit()
+            result = True
         except:
             self._connect.rollback()
+            result = False
+        return result
 
     def update_rank(self, in_son):
         sql = f'update rank_list set click=click+1 where son_name=%(sname)s'

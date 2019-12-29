@@ -58,40 +58,40 @@ def main_win(dbase, u_id, user_name):
         print(values)
         if event is None:
             break
-        if event is '查找':
+        if event == '查找':
             for key in find_func.keys():
                 if key.get():
                     song_data, new_values = find_func[key](dbase, values[2])
                     cash.update(song_data)
                     find.update(values=new_values)
-        if event is '点歌':
+        if event == '点歌':
             length = len(song_list)
             for num, vl in enumerate(values[7]):
                 sname = vl.split(".")[1]
                 song_list.append(f'{length + num + 1}.{sname}')
                 dbase.update_rank(sname.split('-')[0])
-        if event is '置顶':
+        if event == '置顶':
             for x in values[-1]:
                 song_list.remove(x)
             song_list = [*values[-1], *song_list]
             song_list = [f'{num + 1}.{vl.split(".")[1]}' for num, vl in enumerate(song_list)]
-        if event is '删除':
+        if event == '删除':
             for i in values[-1]:
                 song_list.remove(i)
             song_list = [f'{num + 1}.{vl.split(".")[1]}' for num, vl in enumerate(song_list)]
-        if event is '收藏':
+        if event == '收藏':
             for i in values[-2]:
                 v = i.split('-')[0].split('.')[1]
                 if not dbase.add_collections(u_id, cash.get(v)):
                     sg.popup('连接网络出错！', title='提示')
                     break
-        if event is '加入歌单':
+        if event == '加入歌单':
             length = len(song_list)
             for num, vl in enumerate(values[1]):
                 sname = vl.split(".")[1]
                 song_list.append(f'{length + num + 1}.{sname}')
                 dbase.update_rank(sname.split('-')[0])
-        if event is '取消收藏':
+        if event == '取消收藏':
             for i in values[1]:
                 if not dbase.delete_collection(u_id, cash[i.split('-')[0].split('.')[1]]):
                     sg.popup('连接网络出错！', '提示')

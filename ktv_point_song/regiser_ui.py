@@ -31,14 +31,14 @@ def reg_ui(dba):
         event, values = window.read()
         if event in (None, '取消'):
             break
-        if event is '注册':
+        if event == '注册':
             if values[4] == values[5]:
-                reslut = dba.add_user(user_name=values[0],
+                result = dba.add_user(user_name=values[0],
                                       u_password=values[4],
                                       real_name=values[1],
                                       u_sex='男' if values[2] else '女'
                                       )
-                if reslut:
+                if result:
                     sg.popup('注册成功！')
                     break
                 else:
