@@ -50,8 +50,9 @@ class DBMethod(object):
                                                         'u_sex': u_sex,
                                                         'time': time})
             self._connect.commit()
-        except:
+        except BaseException as e:
             # 出错就回滚
+            print(e)
             result = False
             self._connect.rollback()
         return result
@@ -85,13 +86,14 @@ class DBMethod(object):
         return result
 
     # 改<--管理员
-    def insert_sql(self, sql):
+    def insert_delete_sql(self, sql, *args):
         sql = sql
         try:
-            self._cursor.execute(sql)
+            self._cursor.execute(sql, args[0] if args else {})
             self._connect.commit()
             result = True
-        except:
+        except BaseException as e:
+            print(e)
             self._connect.rollback()
             result = False
         return result
@@ -120,8 +122,8 @@ class DBMethod(object):
         self._cursor.execute(sql)
         return self._cursor.fetchall()
 
-    def deal_sql(self, sql):
-        result = self._cursor.execute(sql)
+    def deal_sql(self, sql, *args):
+        result = self._cursor.execute(sql, args[0] if args else {})
         data = self._cursor.fetchall()
         return result, data
 
@@ -135,6 +137,9 @@ class DBMethod(object):
 
     def __repr__(self):
         return f'DBMethod(host="127.0.0.1", port=3306, **kwargs->{self._kwargs!r})'
+
+    change = insert_delete_sql
+    add = insert_delete_sql
 
 
 if __name__ == '__main__':
