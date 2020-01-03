@@ -55,7 +55,7 @@ def main_win(dbase, u_id, user_name):
 
     while True:
         event, values = window.read()
-        print(values)
+        # print(values)
         if event is None:
             break
         if event == '查找':

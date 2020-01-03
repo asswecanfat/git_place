@@ -42,7 +42,7 @@ def main_gui(db):
                 else:
                     sg.popup('登录失败!!', title='提示')
             except BaseException as e:
-                print(e)
+                # print(e)
                 sg.popup('密码错误', title='提示')
         if event == '注册':
             user = reg_ui(db)
@@ -70,5 +70,5 @@ def __reg(user, password, db):
 
 if __name__ == '__main__':
     from db import DBMethod
-    dbase = DBMethod(user='root', password='123456', db='ktv_song')
+    dbase = DBMethod(host='106.12.204.251', user='root', password='3117004627', db='ktv_song')
     main_gui(dbase)

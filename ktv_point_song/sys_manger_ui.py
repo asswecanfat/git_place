@@ -217,7 +217,7 @@ class Song(Sys):
                 sg.popup('修改失败！', title='提示')
         except TypeError as e:
             print(e)
-            sg.popup('未选择用户！', title='提示')
+            sg.popup('未选择歌曲！', title='提示')
         except NameError:
             sg.popup('无该歌手！', title='提示')
         finally:
@@ -242,7 +242,7 @@ class Singer(Sys):
         super().__init__(values=cash, title='歌手列表', head=['歌手id',
                                                           '歌手名字',
                                                           '歌手性别',
-                                                          '歌手所属地',
+                                                          '歌手所属国',
                                                           '歌手类型',
                                                           '拼音缩写',
                                                           '归属地'], db=db)
@@ -251,10 +251,65 @@ class Singer(Sys):
         self._table_id = 'singer_id'
 
     def add(self):
-        print(4)
+        value = self._get_add_date()
+        singer_num_sql = 'select count(*) from singer'
+        add_sql = 'insert into singer values(%(singer_id)s,%(singer_name)s,%(singer_sex)s,' \
+                  '%(country)s,%(song_type)s,%(short_name)s,%(region)s)'
+        try:
+            result, singer_num = self.db.deal_sql(singer_num_sql)
+            singer_id = singer_num[0][0] + 1 if singer_num[0] else None
+            if singer_id:
+                if self.db.add(add_sql, {'singer_id': singer_id, 'singer_name':value[0],
+                                         'singer_sex': value[1], 'country': value[2],
+                                         'song_type': value[3], 'short_name': value[4],
+                                         'region': value[5]}):
+                    insert_logging(self.db, str(value[0]), action='添加', remark=value[-1])
+                    sg.popup(f'添加歌手:{value[0]}成功!', title='提示')
+                else:
+                    raise BaseException
+            else:
+                sg.popup('网络出错！', title='提示')
+        except BaseException:
+            sg.popup('添加失败！', title='提示')
+        finally:
+            super().add()
+
+    def _get_add_date(self):
+        text = sg.popup_get_text('请输入歌手名,歌手性别,歌手所属国,类型,简写,归属地,修改原因(数据之间用,隔开)：')
+        return re.split(r'[,，]', text if text is not None else '')
 
     def change(self):
-        print(6)
+        values = self._change_input()
+        update_sql = 'update singer set s_name=%(singer_name)s,s_sex=%(singer_sex)s,' \
+                     'country=%(country)s,songer_type=%(singer_type)s,pinyin_abbr=%(short_name)s,' \
+                     'region=%(region)s where singer_id=%(singer_id)s'
+        try:
+            source_data = self._data[self.index]
+            if self.db.change(update_sql, {'singer_name': self._return_right(values[0], source_data[1]),
+                                           'singer_sex': self._return_right(values[1], source_data[2]),
+                                           'country': self._return_right(values[2], source_data[3]),
+                                           'singer_type': self._return_right(values[3], source_data[4]),
+                                           'short_name': self._return_right(values[4], source_data[5]),
+                                           'region': self._return_right(values[5], source_data[6]),
+                                           'singer_id': source_data[0]}):
+                insert_logging(self.db, str(values[0]), action='修改', remark=values[-1])
+                sg.popup(f'歌手:{values[0]}(原名:{source_data[1]}修改成功！)', title='提示')
+            else:
+                sg.popup('修改失败！', title='提示')
+        except TypeError:
+            sg.popup('未选择歌手！', title='提示')
+        finally:
+            super().change()
+
+    def _change_input(self):
+        singer_name = sg.popup_get_text('请输入要修改的歌手名(无输入为不修改)：')
+        singer_sex = sg.popup_get_text('请输入要修改的歌手性别(无输入为不修改)：')
+        country = sg.popup_get_text('请输入要修改的歌手所属国(无输入为不修改)：')
+        singer_type = sg.popup_get_text('请输入要修改的歌手所属国(无输入为不修改)：')
+        short_name = sg.popup_get_text('请输入要修改的歌手简写(无输入为不修改)：')
+        region = sg.popup_get_text('请输入要修改的歌手归属地(无输入为不修改)：')
+        remark = sg.popup_get_text('请输入修改理由：')
+        return [singer_name, singer_sex, country, singer_type, short_name, region, remark]
 
 
 def main_m_ui(db):
@@ -286,8 +341,8 @@ def main_m_ui(db):
         while True:
 
             event, values = window.read()
-            print(event)
-            print(values)
+            # print(event)
+            # print(values)
             if event is None:
                 break
             user.update_index(values[0][0] if values[0] else None)
@@ -297,8 +352,9 @@ def main_m_ui(db):
             button_event[event]()
             window.refresh()
         window.close()
-    except ConnectionError:
-        print('出错')
+    except BaseException:
+        sg.popup('网络出错！', title='提示')
+        # print('出错')
 
 
 def _get_data(db, key) -> list:
