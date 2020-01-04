@@ -70,5 +70,5 @@ def __reg(user, password, db):
 
 if __name__ == '__main__':
     from db import DBMethod
-    dbase = DBMethod(host='*****', user='***', password='***', db='ktv_song')
+    dbase = DBMethod(host='****', user='***', password='***', db='ktv_song')
     main_gui(dbase)
