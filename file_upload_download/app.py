@@ -35,3 +35,7 @@ def file_data():
 def file_download(filename):
     return send_from_directory(str(file_location),
                                filename, as_attachment=True)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
