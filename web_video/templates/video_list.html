@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="../static/images/favicon.ico">
+    <title>视频列表</title>
+</head>
+<body>
+    {% for key, value in file_dict.items() %}
+        <div>
+            <div>{{ key }}</div>
+            <ul>
+                {% for i in value %}
+                <li><a href="{{ url_for('play', file='/' + key + '/' +i) }}">{{ i }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</body>
+</html>
