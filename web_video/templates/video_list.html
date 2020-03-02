@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="icon" href="../static/images/favicon.ico">
+    <link rel="icon" href="../static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/list.css"/>
+    <script src="../static/js/jquery.js"></script>
     <title>视频列表</title>
 </head>
 <body>
+    <div class="stars"></div>
     {% for key, value in file_dict.items() %}
-        <div>
-            <div>{{ key }}</div>
+        <div id="container">
+            <h1>{{ key | truncate(20) }}</h1>
             <ul>
                 {% for i in value %}
-                <li><a href="{{ url_for('play', file='/' + key + '/' +i) }}">{{ i }}</a></li>
+                <li><a href="{{ url_for('play', file='/' + key + '/' +i) }}">{{ i | truncate(20) }}</a></li>
                 {% endfor %}
             </ul>
         </div>
     {% endfor %}
+    <script src="../static/js/fishc.js"></script>
 </body>
 </html>

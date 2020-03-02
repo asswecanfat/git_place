@@ -1,0 +1,22 @@
+body {
+    background-color: #eeeeee;
+}
+#container {
+    background-color: #FFE4E1;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#player {
+    text-align: center;
+}
+#title {
+    text-align: center;
+    color: darkslateblue;
+}
+#pl {
+    width: 50%;
+    height: 50%;
+}
+
+
