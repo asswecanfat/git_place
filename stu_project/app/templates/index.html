@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>签到</title>
-		<meta name="viewport" content="width=device-width"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
         <link rel="icon" href="../static/images/favicon.ico">
 		<link rel="stylesheet" type="text/css" href="../static/css/reset.css" />
 		<link rel="stylesheet" type="text/css" href="../static/css/index.css" />
@@ -14,7 +14,16 @@
 			<form class="check-in" action="" method=post enctype=multipart/form-data>
 				<ul class="contentList">
 					<li class="contentItem header">
-						<h2>签到表</h2>
+						<div id="time">
+							剩余时间 <span class="left">00:00</span>
+						</div>
+						<!-- 弹窗 -->
+						<div id="dial">
+							
+							<h2 class="message"><em>{{ message }}</em></h2>
+						</div>
+						
+						
 					</li>
 					<li class="contentItem">
 						{{ form.student_id.label}}{{ ':' }}{{ form.student_id }}
@@ -37,15 +46,7 @@
 			</form>
 			
 			
-			<!-- 弹窗 -->
-			<div id="dial">
-				<span class="close">x</span>
-				<h2 class="message"><em>{{ message }}</em></h2>
-			</div>
 			
-			<div id="time">
-				剩余时间 <span class="left">00:00</span>
-			</div>
 		</div>
 		
 
@@ -56,7 +57,7 @@
 			let form = document.querySelector('#wrapper .check-in');
 			let leftTime = document.querySelector('#time .left');
 			let timer;
-			let currentTime = {{time}};
+			let currentTime ={{time}};
 			
 			timer = setInterval(function(){
 				currentTime--;
@@ -87,34 +88,37 @@
 			let submit = document.querySelector('input[type=submit]');
 			let fileList = document.querySelector('#imageHolder .img-list');
 			let dial = document.querySelector('#dial');
-			let close = document.querySelector('#dial .close');
+			
+			let li;
 			input.addEventListener('change', () => {
 				console.log(input.files);
-
-				for (var i = 0; i < input.files.length; i++) {
+				
 					let reader = new FileReader();
-					reader.readAsDataURL(input.files[i]);
+					reader.readAsDataURL(input.files[0]);
 					reader.onload = () => {
+						let imga = document.querySelector('#imageHolder .img-list .img-item');
+						console.log(imga);
+						if(imga){
+							imga.remove();
+						}
+						
 						console.log(reader.result);
-						let li = document.createElement('li');
+						
+						li= document.createElement('li');
 						li.classList.add('img-item');
 						fileList.appendChild(li);
 						let img = new Image();
 						img.src = reader.result;
-						img.width = 200;
+						img.width = 100;
 						li.appendChild(img); // reader.result为获取结果
+						
 					}
-				}
+				
 
 
 			}, false);
 			
-			close.onclick = function(){
-				dial.style.opacity = '0';
-				setTimeout(function(){
-					dial.style.display = 'none';
-				},1000);
-			}
+		
 			
 			
 		</script>

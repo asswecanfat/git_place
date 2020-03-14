@@ -17,7 +17,7 @@
 	margin: auto;
 	padding: 5px;
 	box-sizing: border-box;
-	border-radius: 30px;
+	border-radius: 10px;
 	background-color: rgba(0, 0, 0, 0.5);
 	overflow: hidden;
 	
@@ -25,15 +25,17 @@
 
 
 }
-
+.header{
+	position: relative;
+}
 #imageHolder .img-list {
 	overflow: hidden;
 }
 
 #imageHolder .img-list .img-item {
 	float: left;
-	width: 200px;
-	height: 200px;
+	width: 100px;
+	height: 100px;
 	overflow: hidden;
 
 }
@@ -51,13 +53,13 @@
 .contentList .contentItem {
 	float: left;
 	width: 100%;
-	margin-top: 20px;
+	margin-top: 5px;
+}
+.contentList .contentItem:first-child{
+	margin-top: 0;
 }
 
-.contentList .contentItem.header h2 {
-	font-size: 35px;
-	text-align: center;
-}
+
 
 canvas {
 	padding: 0;
@@ -65,31 +67,16 @@ canvas {
 }
 
 #dial{
-	position: fixed;
-	z-index: 100;
-	left: 50%;
-	transform: translateX(-50%);
-	top: 47px;
 	
 	
-	width: 90%;
-	
-	margin: auto;
 	text-align: center;
-	background-color: yellowgreen;
+	background-color: rgba(0,0,0,.5);
 	border-radius: 10px;
 	transition: 1s;
 	
 }
 
-#dial .close{
-	position: absolute;
-	right: 20px;
-	top: 0px;
-	color: #fff;
-	display: block;
-	cursor: pointer;
-}
+
 
 #dial .message{
 	
@@ -99,13 +86,11 @@ canvas {
 }
 
 #time{
-	position: fixed;
-	left: 50%;
-	transform: translateX(-50%);
-	top: 10px;
-	width: 90%;
+	
 	color: #fff;
 	text-align: center;
 	border-radius: 10px;
 	background-color: rgba(0,0,0,.5);
+	margin-bottom: 5px;
+	margin-top: 5px;
 }
