@@ -1,3 +1,5 @@
+from flask_uploads import UploadNotAllowed
+
 from . import main
 from .form import PostForm
 from .. import db, photos
@@ -39,12 +41,11 @@ def sign_in():
             try:
                 data = Sign(user_id, user_name, str(datetime.today()), f'http://{all_config.ip}/pic_show/{img_name}')
                 db.session.add(data)
-                db.session.commit()
                 photos.save(storage=img_file, name=str(img_name))
-            except BaseException as e:
-                print(e)
+                db.session.commit()
+            except UploadNotAllowed:
                 db.session.rollback()
-                message = '签到失败，数据记录错误！'
+                message = '签到失败，数据记录错误(文件类型错误)！'
 
             else:
                 message = '签到成功！'
