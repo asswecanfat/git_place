@@ -1,0 +1,445 @@
+[2020-03-26 17:18:43,783]-127.0.0.1-访问-http://127.0.0.1:5000/videolist-main_app-INFO-12-登入视频主页
+[2020-03-26 17:18:43,942]-127.0.0.1-访问-http://127.0.0.1:5000/videolist-main_app-ERROR-1891-Exception on /videolist [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\ass\web_video\views.py", line 14, in get_list
+    return render_template('video_list.html', file_dict=file_dict)
+  File "E:\python\lib\site-packages\flask\templating.py", line 140, in render_template
+    ctx.app,
+  File "E:\python\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "E:\python\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "D:\ass\web_video\templates\video_list.html", line 18, in top-level template code
+    <li><a href="{{ url_for('play', file='/' + key + '/' +i) }}">{{ i | truncate(20) }}</a></li>
+  File "E:\python\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "E:\python\lib\site-packages\flask\app.py", line 2215, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\helpers.py", line 358, in url_for
+    endpoint, values, method=method, force_external=external
+  File "E:\python\lib\site-packages\werkzeug\routing.py", line 2181, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'play' with values ['file']. Did you mean 'main.play' instead?
+[2020-03-26 17:21:41,366]-127.0.0.1-访问-http://127.0.0.1:5000/videolist-main_app-INFO-12-登入视频主页
+[2020-03-26 17:21:41,378]-127.0.0.1-访问-http://127.0.0.1:5000/videolist-main_app-ERROR-1891-Exception on /videolist [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\ass\web_video\views.py", line 14, in get_list
+    return render_template('video_list.html', file_dict=file_dict)
+  File "E:\python\lib\site-packages\flask\templating.py", line 140, in render_template
+    ctx.app,
+  File "E:\python\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "E:\python\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "D:\ass\web_video\templates\video_list.html", line 18, in top-level template code
+    <li><a href="{{ url_for('play', file='/' + key + '/' +i) }}">{{ i | truncate(20) }}</a></li>
+  File "E:\python\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "E:\python\lib\site-packages\flask\app.py", line 2215, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\helpers.py", line 358, in url_for
+    endpoint, values, method=method, force_external=external
+  File "E:\python\lib\site-packages\werkzeug\routing.py", line 2181, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'play' with values ['file']. Did you mean 'main.play' instead?
+[2020-03-26 17:22:38,019]-127.0.0.1-访问-http://127.0.0.1:5000/videolist-main_app-INFO-12-登入视频主页
+[2020-03-26 17:22:38,032]-127.0.0.1-访问-http://127.0.0.1:5000/videolist-main_app-ERROR-1891-Exception on /videolist [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\ass\web_video\views.py", line 14, in get_list
+    return render_template('video_list.html', file_dict=file_dict)
+  File "E:\python\lib\site-packages\flask\templating.py", line 140, in render_template
+    ctx.app,
+  File "E:\python\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "E:\python\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "D:\ass\web_video\templates\video_list.html", line 18, in top-level template code
+    <li><a href="{{ url_for('/play', file='/' + key + '/' +i) }}">{{ i | truncate(20) }}</a></li>
+  File "E:\python\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "E:\python\lib\site-packages\flask\app.py", line 2215, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\helpers.py", line 358, in url_for
+    endpoint, values, method=method, force_external=external
+  File "E:\python\lib\site-packages\werkzeug\routing.py", line 2181, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint '/play' with values ['file']. Did you mean 'main.play' instead?
+[2020-03-26 17:41:42,983]-127.0.0.1-访问-http://127.0.0.1:5000/videolist-main_app-INFO-12-登入视频主页
+[2020-03-26 17:41:47,676]-127.0.0.1-访问-http://127.0.0.1:5000/play?file=%2Ftest1%2F%5B清晰+480P%5D+茂++名++对++王.flv-main_app-INFO-25-播放视频
+[2020-03-26 20:25:38,839]-127.0.0.1-访问-http://127.0.0.1:5000/videolist-main_app-INFO-12-登入视频主页
+[2020-03-26 20:26:23,998]-127.0.0.1-访问-http://127.0.0.1:5000/ttt-main_app-ERROR-1891-Exception on /ttt [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\ass\web_video\views.py", line 57, in ttt
+    return render_template('ttt.html', gen=(i for i in range(1, 10)))
+  File "E:\python\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "E:\python\lib\site-packages\jinja2\loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 591, in compile
+    self.handle_exception(exc_info, source_hint=source_hint)
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "D:\ass\web_video\templates\ttt.html", line 9, in template
+    <h1>{% i %}</h1>
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 497, in _parse
+    return Parser(self, source, name, encode_filename(filename)).parse()
+  File "E:\python\lib\site-packages\jinja2\parser.py", line 901, in parse
+    result = nodes.Template(self.subparse(), lineno=1)
+  File "E:\python\lib\site-packages\jinja2\parser.py", line 883, in subparse
+    rv = self.parse_statement()
+  File "E:\python\lib\site-packages\jinja2\parser.py", line 130, in parse_statement
+    return getattr(self, 'parse_' + self.stream.current.value)()
+  File "E:\python\lib\site-packages\jinja2\parser.py", line 199, in parse_for
+    body = self.parse_statements(('name:endfor', 'name:else'))
+  File "E:\python\lib\site-packages\jinja2\parser.py", line 165, in parse_statements
+    result = self.subparse(end_tokens)
+  File "E:\python\lib\site-packages\jinja2\parser.py", line 883, in subparse
+    rv = self.parse_statement()
+  File "E:\python\lib\site-packages\jinja2\parser.py", line 144, in parse_statement
+    self.fail_unknown_tag(token.value, token.lineno)
+  File "E:\python\lib\site-packages\jinja2\parser.py", line 97, in fail_unknown_tag
+    return self._fail_ut_eof(name, self._end_token_stack, lineno)
+  File "E:\python\lib\site-packages\jinja2\parser.py", line 90, in _fail_ut_eof
+    self.fail(' '.join(message), lineno)
+  File "E:\python\lib\site-packages\jinja2\parser.py", line 59, in fail
+    raise exc(msg, lineno, self.name, self.filename)
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'i'. Jinja was looking for the following tags: 'endfor' or 'else'. The innermost block that needs to be closed is 'for'.
+[2020-03-26 20:32:03,213]-127.0.0.1-访问-http://127.0.0.1:5000/videolist-main_app-INFO-12-登入视频主页
+[2020-03-26 20:32:07,772]-127.0.0.1-访问-http://127.0.0.1:5000/play?file=%2Ftest1%2F%5B清晰+480P%5D+茂++名++对++王.flv-main_app-INFO-25-播放视频
+[2020-03-26 20:33:16,208]-127.0.0.1-访问-http://127.0.0.1:5000/play?file=%2Ftest2%2F%5B清晰+480P%5D+茂++名++对++王.mkv-main_app-INFO-25-播放视频
+[2020-03-27 21:20:05,163]-127.0.0.1-访问-http://127.0.0.1:5000/videolist-main_app-INFO-12-登入视频主页
+[2020-03-27 21:20:08,795]-127.0.0.1-访问-http://127.0.0.1:5000/test-main_app-ERROR-1891-Exception on /test [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\ass\web_video\views.py", line 57, in ve
+    return render_template('index.html', vedio_list=[i.stem for i in Path(r'.static/video')])
+TypeError: 'WindowsPath' object is not iterable
+[2020-03-27 21:20:34,946]-127.0.0.1-访问-http://127.0.0.1:5000/test-main_app-ERROR-1891-Exception on /test [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\ass\web_video\views.py", line 57, in ve
+    return render_template('index.html', vedio_list=[i.stem for i in Path(r'.static/video').iterdir()])
+  File "D:\ass\web_video\views.py", line 57, in <listcomp>
+    return render_template('index.html', vedio_list=[i.stem for i in Path(r'.static/video').iterdir()])
+  File "E:\python\lib\pathlib.py", line 1074, in iterdir
+    for name in self._accessor.listdir(self):
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: '.static\\video'
+[2020-03-27 21:25:09,108]-127.0.0.1-访问-http://127.0.0.1:5000/test-main_app-ERROR-1891-Exception on /test [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\ass\web_video\views.py", line 58, in ve
+    return render_template('index.html', vedio_list=[i.stem for i in Path(f'{this_dir}/static/video').iterdir()])
+  File "D:\ass\web_video\views.py", line 58, in <listcomp>
+    return render_template('index.html', vedio_list=[i.stem for i in Path(f'{this_dir}/static/video').iterdir()])
+  File "E:\python\lib\pathlib.py", line 1074, in iterdir
+    for name in self._accessor.listdir(self):
+OSError: [WinError 123] 文件名、目录名或卷标语法不正确。: "<bound method Path.absolute of WindowsPath('D:\\ass\\web_video\\views.py')>\\static\\video"
+[2020-03-27 21:25:30,021]-127.0.0.1-访问-http://127.0.0.1:5000/test-main_app-ERROR-1891-Exception on /test [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\ass\web_video\views.py", line 58, in ve
+    return render_template('index.html', vedio_list=[i.stem for i in Path(f'{str(this_dir)}/static/video').iterdir()])
+  File "D:\ass\web_video\views.py", line 58, in <listcomp>
+    return render_template('index.html', vedio_list=[i.stem for i in Path(f'{str(this_dir)}/static/video').iterdir()])
+  File "E:\python\lib\pathlib.py", line 1074, in iterdir
+    for name in self._accessor.listdir(self):
+OSError: [WinError 123] 文件名、目录名或卷标语法不正确。: "<bound method Path.absolute of WindowsPath('D:\\ass\\web_video\\views.py')>\\static\\video"
+[2020-03-27 21:27:16,754]-127.0.0.1-访问-http://127.0.0.1:5000/test-main_app-ERROR-1891-Exception on /test [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\ass\web_video\views.py", line 59, in ve
+    return render_template('index.html', vedio_list=[i.stem for i in Path(f'{this_dir}/static/video').iterdir()])
+  File "D:\ass\web_video\views.py", line 59, in <listcomp>
+    return render_template('index.html', vedio_list=[i.stem for i in Path(f'{this_dir}/static/video').iterdir()])
+  File "E:\python\lib\pathlib.py", line 1074, in iterdir
+    for name in self._accessor.listdir(self):
+OSError: [WinError 123] 文件名、目录名或卷标语法不正确。: "<bound method Path.absolute of WindowsPath('D:\\ass\\web_video\\views.py')>\\static\\video"
+[2020-03-27 21:27:27,662]-127.0.0.1-访问-http://127.0.0.1:5000/test-main_app-ERROR-1891-Exception on /test [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\ass\web_video\views.py", line 59, in ve
+    return render_template('index.html', vedio_list=[i.stem for i in Path(f'{this_dir}/static/video').iterdir()])
+  File "D:\ass\web_video\views.py", line 59, in <listcomp>
+    return render_template('index.html', vedio_list=[i.stem for i in Path(f'{this_dir}/static/video').iterdir()])
+  File "E:\python\lib\pathlib.py", line 1074, in iterdir
+    for name in self._accessor.listdir(self):
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'D:\\ass\\web_video\\views.py\\static\\video'
+[2020-03-28 17:09:19,483]-127.0.0.1-访问-http://127.0.0.1:5000/videolist-main_app-INFO-14-登入视频主页
+[2020-03-28 17:16:58,944]-127.0.0.1-访问-http://127.0.0.1:5000/test-main_app-ERROR-1891-Exception on /test [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\ass\web_video\views.py", line 64, in ve
+    'index': num + 1} for num, i in enumerate(this_dir.glob('*'))]))
+  File "E:\python\lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "E:\python\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "E:\python\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "E:\python\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type WindowsPath is not JSON serializable
+[2020-03-28 17:17:00,410]-127.0.0.1-访问-http://127.0.0.1:5000/test-main_app-ERROR-1891-Exception on /test [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\ass\web_video\views.py", line 64, in ve
+    'index': num + 1} for num, i in enumerate(this_dir.glob('*'))]))
+  File "E:\python\lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "E:\python\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "E:\python\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "E:\python\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type WindowsPath is not JSON serializable
+[2020-03-28 17:17:41,676]-127.0.0.1-访问-http://127.0.0.1:5000/test-main_app-ERROR-1891-Exception on /test [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\ass\web_video\views.py", line 64, in ve
+    'index': num + 1} for num, i in enumerate(this_dir.glob('*'))]))
+  File "E:\python\lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "E:\python\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "E:\python\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "E:\python\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type WindowsPath is not JSON serializable
+[2020-03-28 21:14:48,031]-127.0.0.1-访问-http://127.0.0.1:5000/videolist-main_app-INFO-14-登入视频主页
+[2020-03-28 21:36:18,449]-127.0.0.1-访问-http://127.0.0.1:5000/test-main_app-ERROR-15-访问页面出错:404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2020-03-28 21:36:18,470]-127.0.0.1-访问-http://127.0.0.1:5000/test-main_app-ERROR-1891-Exception on /test [GET]
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1925, in dispatch_request
+    self.raise_routing_exception(req)
+  File "E:\python\lib\site-packages\flask\app.py", line 1907, in raise_routing_exception
+    raise request.routing_exception
+  File "E:\python\lib\site-packages\flask\ctx.py", line 350, in match_request
+    result = self.url_adapter.match(return_rule=True)
+  File "E:\python\lib\site-packages\werkzeug\routing.py", line 1960, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\python\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "E:\python\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1815, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "E:\python\lib\site-packages\flask\app.py", line 1743, in handle_http_exception
+    return handler(e)
+  File "D:\ass\web_video\views.py", line 16, in error
+    return render_template('404.html')
+  File "E:\python\lib\site-packages\flask\templating.py", line 140, in render_template
+    ctx.app,
+  File "E:\python\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "E:\python\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "E:\python\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "D:\ass\web_video\templates\404.html", line 159, in top-level template code
+    window.location.href = "{{ url_for('main.asswecan') }}";
+  File "E:\python\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "E:\python\lib\site-packages\flask\app.py", line 2215, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "E:\python\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "E:\python\lib\site-packages\flask\helpers.py", line 358, in url_for
+    endpoint, values, method=method, force_external=external
+  File "E:\python\lib\site-packages\werkzeug\routing.py", line 2181, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'main.asswecan'. Did you mean 'main.ve' instead?
+[2020-03-28 21:38:06,986]-127.0.0.1-访问-http://127.0.0.1:5000/test-main_app-ERROR-15-访问页面出错:404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2020-03-28 21:38:13,033]-127.0.0.1-访问-http://127.0.0.1:5000/favicon.ico-main_app-ERROR-15-访问页面出错:404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+[2020-03-28 21:38:27,049]-127.0.0.1-访问-http://127.0.0.1:5000/favicon.ico-main_app-ERROR-15-访问页面出错:404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.

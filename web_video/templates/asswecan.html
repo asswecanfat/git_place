@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+		<title>晓视频(*^_^*)</title>
+        <link rel="icon" href="../static/im/fagvicon.ico"/>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			img {
+				display: block;
+			}
+
+			ul,
+			ol {
+				list-style: none;
+			}
+
+			input {
+				outline: none;
+			}
+
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				background-color: #2f2f2f;
+				overflow: hidden;
+			}
+
+			#wrap {
+				width: 100%;
+				height: 100%;
+				overflow: auto;
+			}
+
+			.header {
+				width: 100%;
+				background-color: #222;
+				overflow: hidden;
+			}
+
+			.logo {
+				position: relative;
+				float: left;
+				width: 25%;
+				height: 60px;
+				text-align: center;
+				line-height: 60px;
+			}
+
+			.logo-img-list {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+
+			}
+
+			.logo-img {
+				height: 35px;
+				display: none;
+			}
+
+			@media screen and (min-width:1024px) {
+				.logo-img:first-child {
+					display: block;
+				}
+
+				.logo-img:nth-child(2) {
+					display: none;
+				}
+
+				.logo-img:nth-child(3) {
+					display: none;
+				}
+			}
+
+			@media screen and (max-width:1024px) and (min-width:768px) {
+				.logo-img:first-child {
+					display: none;
+				}
+
+				.logo-img:nth-child(2) {
+					display: block;
+				}
+
+				.logo-img:nth-child(3) {
+					display: none;
+				}
+			}
+
+			@media screen and (max-width:768px) {
+				.logo-img:first-child {
+					display: none;
+				}
+
+				.logo-img:nth-child(2) {
+					display: none;
+				}
+
+				.logo-img:nth-child(3) {
+					display: block;
+				}
+			}
+
+			.search {
+				box-sizing: border-box;
+				position: relative;
+				float: left;
+				width: 50%;
+				height: 60px;
+				padding: 10px 0;
+			}
+
+			.search-text {
+				float: left;
+				box-sizing: border-box;
+				width: 80%;
+				height: 40px;
+				padding: 3px 10px;
+				border-radius: 10px 0 0 10px;
+				border: 1px solid #000;
+			}
+
+			.search-btn {
+				float: left;
+				box-sizing: border-box;
+				width: 20%;
+				height: 40px;
+				border-radius: 0px 10px 10px 0px;
+				border: 1px solid #000;
+			}
+
+			.nav,
+			.nav-box {
+				position: relative;
+				float: left;
+				width: 25%;
+				height: 60px;
+			}
+
+			@media screen and (min-width:1024px) {
+				.nav {
+					display: block;
+				}
+			}
+
+			@media screen and (max-width:1024px) and (min-width:768px) {
+				.nav {
+					display: block;
+				}
+			}
+
+			@media screen and (max-width:768px) {
+				.nav {
+					display: none;
+				}
+			}
+
+			.nav a {
+				float: left;
+				box-sizing: border-box;
+				width: 25%;
+				height: 60px;
+				text-align: center;
+				line-height: 60px;
+				color: #fff;
+			}
+
+			.nav-box {
+				display: none;
+			}
+
+			@media screen and (max-width:768px) {
+				.nav-box {
+					display: block;
+				}
+			}
+
+			.nav-box .box {
+				position: absolute;
+				z-index: 100;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				width: 43px;
+				height: 34px;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 6px;
+				border: 2px solid #fff;
+			}
+
+			.nav-box .box span {
+				display: inline-block;
+				width: 24px;
+				height: 3px;
+				background-color: #fff;
+
+			}
+
+
+			.nav-mask {
+				display: none;
+				position: absolute;
+				z-index: 100;
+				right: 0;
+				top: 60px;
+				width: 100%;
+				background-color: rgba(0, 0, 0, 0.8);
+
+
+			}
+
+			.nav-mask a {
+				display: block;
+				height: 30px;
+				color: #fff;
+				text-align: center;
+				line-height: 30px;
+
+			}
+
+			.main {
+				width: 100%;
+			}
+
+			.list {
+				display: flex;
+				width: 90%;
+				margin: 0 auto;
+				flex-wrap: wrap;
+
+			}
+
+
+			.list .list-item {
+				position: relative;
+				flex: 0 0 auto;
+				box-sizing: border-box;
+				padding: 25px;
+				width: 25%;
+				opacity: 0.8;
+				transition: opacity 1s;
+				cursor: pointer;
+
+			}
+
+			.list .list-item:hover {
+				opacity: 1;
+			}
+
+
+			@media screen and (min-width:1024px) {
+				.list .list-item {
+					width: 25%;
+				}
+			}
+
+			@media screen and (max-width:768px) {
+				.list .list-item {
+					padding: 25px 10px;
+					width: 100%;
+				}
+			}
+
+			@media screen and (min-width:768px) and (max-width:1024px) {
+				.list .list-item {
+					padding: 25px 10px;
+					width: 33%;
+
+				}
+			}
+
+			.list .list-item img {
+				width: 100%;
+				height: 100%;
+				box-shadow: 0 0 15px 5px #122;
+			}
+
+			.movie-name {
+				position: absolute;
+				left: 10%;
+				bottom: 10%;
+				font-weight: 700;
+				color: #fff;
+				font-size: 24px;
+			}
+
+			.movie {
+				display: none;
+				position: absolute;
+				z-index: 1000;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				background-color: rgba(0, 0, 0, 0.5);
+
+
+			}
+
+			.movie-box {
+				box-sizing: border-box;
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				width: 90%;
+				height: 70%;
+				margin: auto;
+				border: 3px solid #000;
+			}
+
+			@media screen and (max-width:768px) {
+				.movie-box {
+					width: 95%;
+					height: 200px;
+				}
+			}
+
+			@media screen and (min-width:768px) and (max-width:1024px) {
+				.movie-box {
+					width: 95%;
+					height: 500px;
+				}
+			}
+
+			video {
+				float: left;
+				height: 100%;
+				width: 80%;
+				background-color: #000;
+			}
+
+			.movie-list {
+				float: left;
+				width: 20%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 1);
+			}
+
+			.movie-src {
+				float: left;
+				width: 100%;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				color: #333;
+				transition: color 1s;
+				cursor: pointer;
+			}
+
+			.movie-src:hover {
+				color: #fff;
+			}
+			.movie-src.active{
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div class="header">
+				<h1 class="logo">
+					<a href="" class="logo-img-list">
+						<img class="logo-img" src="../static/img/Brand.png" alt="">
+						<img class="logo-img" src="../static/img/Brand-M.png" alt="">
+						<img class="logo-img" src="../static/img/Brand-S.png" alt="">
+					</a>
+				</h1>
+				<form class="search">
+					<input type="text" class="search-text" placeholder="请输入搜索内容" />
+					<input type="submit" value="搜索" class="search-btn" />
+				</form>
+				<div class="nav">
+					<a href="">首页</a>
+					<a href="">课程</a>
+					<a href="">公告</a>
+					<a href="">登录</a>
+				</div>
+				<div class="nav-box">
+					<div class="box">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+				<div class="nav-mask">
+					<a href="">首页</a>
+					<a href="">课程</a>
+					<a href="">公告</a>
+					<a href="">登录</a>
+
+				</div>
+			</div>
+			<div class="main">
+				<ul class="list">
+
+
+				</ul>
+
+			</div>
+			<div class="movie">
+				<div class="movie-box">
+					<video controls="controls">
+						当前浏览器不支持 video直接播放，点击这里下载视频： <a href="myvideo.webm">下载视频</a>
+					</video>
+					<ul class="movie-list">
+
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+		<script src="../static/js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var mov = document.querySelector('.movie');
+			var video = document.querySelector('video');
+			var movieBox = document.querySelector('.movie-box');
+			var movieList = document.querySelector('.list');
+			var box = document.querySelector('.box');
+
+
+
+			var isShow = false;
+			box.addEventListener('touchend', function() {
+				var navMask = document.querySelector('.nav-mask');
+				if (!isShow) {
+					navMask.style.display = 'block';
+
+				} else {
+					navMask.style.display = '';
+				}
+				isShow = !isShow;
+			});
+
+			//
+			
+			
+			
+			
+			//电影实例数组
+			var data = [];
+			 
+			$.get('/vedio_api',get,'json');
+			
+			function get(res){
+				 data = res;
+				for (var i = 0; i < data.length; i++) {
+					var liNode = document.createElement('li');
+					var imgNode = document.createElement('img');
+					var nameNode = document.createElement('span');
+					liNode.className = 'list-item';
+					nameNode.className = 'movie-name';
+					
+					
+					nameNode.innerHTML = data[i].name;
+					imgNode.src = data[i].imgSrc;
+					liNode.dataset.index = data[i].index;
+					
+					movieList.appendChild(liNode);
+					liNode.appendChild(imgNode);
+					liNode.appendChild(nameNode);
+									
+					liNode.onclick = function() {
+				
+						mov.style.display = 'block';
+						var srcs = data[this.dataset.index].src;
+						video.src = srcs[0];
+						var movieList = document.querySelector('.movie-list');
+						
+						var childs = movieList.childNodes; 
+						for(var i = childs .length - 1; i >= 0; i--) {
+						  movieList.removeChild(childs[i]);
+						}
+						for (var i = 0; i < srcs.length; i++) {
+							
+							var movieSic = document.createElement('li');
+							if(i == 0){
+								movieSic.className = 'movie-src active';
+							}else{
+							movieSic.className = 'movie-src';
+							}
+							movieSic.dataset.src = srcs[i];
+							movieSic.innerHTML = '第' + (i + 1) + '集';
+							movieList.appendChild(movieSic);
+							movieSic.onclick = function() {
+								var movieSrcs = document.querySelectorAll('.movie-src');
+								for (var k = 0; k < movieSrcs.length; k++) {
+									movieSrcs[k].className = 'movie-src';
+								}
+								this.className = 'movie-src active';
+								video.src = this.dataset.src;
+							}
+				
+						}
+				
+					}
+				}
+			}
+			
+
+		
+
+			
+			
+			movieBox.onclick = function(e) {
+				e.stopPropagation();
+			}
+			mov.onclick = function() {
+				video.pause();
+				mov.style.display = 'none';
+			}
+		</script>
+	</body>
+</html>
