@@ -2,7 +2,7 @@ from datetime import timedelta
 from flask_uploads import IMAGES
 from pathlib import Path
 
-img_path = Path('./app/static/data')
+img_path = Path(__file__).parent / Path('app/static/data')
 ip = '127.0.0.1:5000'
 
 
