@@ -91,11 +91,12 @@ def creat():
 
 @main.route('/start/<string:course>', methods=['POST', 'GET'])
 def start(course):
+    import random
     global TbModel
     global end_time
     global flag
     global user_insure
-    tb_name = f'{str(datetime.now().date())}{course}'
+    tb_name = f'{str(datetime.now().date())}{course}{str(random.randint(0, 10))}'
     num = db.Column('num', db.Integer, autoincrement=True, primary_key=True, nullable=False)
     id_ = db.Column('id', db.BIGINT)
     name = db.Column('name', db.String(64))
@@ -108,14 +109,14 @@ def start(course):
     '''
     # 将一个类和table映射一下：
     # 根据tb_name构造一个类名
-    class_name = tb_name.title().replace('_', '') + 'Model'
+    class_name = f"{tb_name.title().replace('_', '')}{'Model'}"
     # 创建类，必须为空类
     TbModel = type(class_name, (object,), {
     })
+    db.metadata.clear()  # 删除旧类并重新生成新的映射类
     db.mapper(TbModel, table)
     TbModel.query = db.session.query(TbModel)
     flag = 1
-    start_time = datetime.now()
-    end_time = start_time + timedelta(minutes=20)
+    end_time = datetime.now() + timedelta(seconds=10)
     user_insure = []
     return '200'
