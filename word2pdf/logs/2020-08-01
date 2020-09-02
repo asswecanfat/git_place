@@ -1,0 +1,84 @@
+2020-08-01 21:36:33
+Traceback (most recent call last):
+
+> File "D:/ass/word2pdf/Word2PDF.py", line 164, in <module>
+    myWin = MainUI()
+            ©¸ <function MainUI at 0x000001F10BF27C10>
+
+  File "D:/ass/word2pdf/Word2PDF.py", line 28, in __init__
+    super(MainUI, self).__init__()
+          ©¦       ©¸ <__main__.MainUI object at 0x000001F10BF2D940>
+          ©¸ <function MainUI at 0x000001F10BF27C10>
+
+TypeError: super() argument 1 must be type, not function
+2020-08-01 21:38:15
+Traceback (most recent call last):
+
+> File "D:/ass/word2pdf/Word2PDF.py", line 164, in <module>
+    myWin = MainUI()
+            ©¸ <function MainUI at 0x000001230FFCFA60>
+
+  File "D:/ass/word2pdf/Word2PDF.py", line 28, in __init__
+    super(MainUI, self).__init__()
+          ©¦       ©¸ <__main__.MainUI object at 0x000001230FFD5790>
+          ©¸ <function MainUI at 0x000001230FFCFA60>
+
+TypeError: super() argument 1 must be type, not function
+2020-08-01 21:38:43
+Traceback (most recent call last):
+
+  File "D:/ass/word2pdf/Word2PDF.py", line 163, in <module>
+    myWin = MainUI()
+            ©¸ <class '__main__.MainUI'>
+
+> File "D:/ass/word2pdf/Word2PDF.py", line 36, in __init__
+    self.th_pr = FileThread()
+    ©¦            ©¸ <function FileThread at 0x000001B5E714E9D0>
+    ©¸ <__main__.MainUI object at 0x000001B5E7F854C0>
+
+  File "D:\ass\word2pdf\thread_work.py", line 15, in __init__
+    super(FileThread, self).__init__()
+          ©¦           ©¸ <thread_work.FileThread object at 0x000001B5E7F85E50>
+          ©¸ <function FileThread at 0x000001B5E714E9D0>
+
+TypeError: super() argument 1 must be type, not function
+2020-08-01 21:38:43
+Traceback (most recent call last):
+
+  File "D:/ass/word2pdf/Word2PDF.py", line 163, in <module>
+    myWin = MainUI()
+            ©¸ <class '__main__.MainUI'>
+
+> File "D:/ass/word2pdf/Word2PDF.py", line 38, in __init__
+    self.update = UpdateCheck(float(self.config.read_version()))
+    ©¦    ©¦        ©¦                 ©¦    ©¦      ©¸ <function ReadConfig.read_version at 0x000001B5E7F7AAF0>
+    ©¦    ©¦        ©¦                 ©¦    ©¸ <config_read.ReadConfig object at 0x000001B5E7F902B0>
+    ©¦    ©¦        ©¦                 ©¸ <__main__.MainUI object at 0x000001B5E7F854C0>
+    ©¦    ©¦        ©¸ <function UpdateCheck at 0x000001B5E7F71AF0>
+    ©¦    ©¸ <built-in method update>
+    ©¸ <__main__.MainUI object at 0x000001B5E7F854C0>
+
+  File "D:\ass\word2pdf\thread_work.py", line 44, in __init__
+    super(UpdateCheck, self).__init__()
+          ©¦            ©¸ <thread_work.UpdateCheck object at 0x000001B5E7F85E50>
+          ©¸ <function UpdateCheck at 0x000001B5E7F71AF0>
+
+TypeError: super() argument 1 must be type, not function
+2020-08-01 21:38:43
+Traceback (most recent call last):
+
+  File "D:/ass/word2pdf/Word2PDF.py", line 163, in <module>
+    myWin = MainUI()
+            ©¸ <class '__main__.MainUI'>
+
+> File "D:/ass/word2pdf/Word2PDF.py", line 40, in __init__
+    self.update_get = UpdateGet()
+    ©¦                 ©¸ <function UpdateGet at 0x000001B5E7F71EE0>
+    ©¸ <__main__.MainUI object at 0x000001B5E7F854C0>
+
+  File "D:\ass\word2pdf\thread_work.py", line 56, in __init__
+    super(UpdateGet, self).__init__()
+          ©¦          ©¸ <thread_work.UpdateGet object at 0x000001B5E7F85E50>
+          ©¸ <function UpdateGet at 0x000001B5E7F71EE0>
+
+TypeError: super() argument 1 must be type, not function
