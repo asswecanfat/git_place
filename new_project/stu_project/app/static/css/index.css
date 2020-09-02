@@ -1,0 +1,96 @@
+#wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#wrapper .check-in {
+	position: absolute;
+	z-index: 100;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 980px;
+	height: 530px;
+	margin: auto;
+	padding: 5px;
+	box-sizing: border-box;
+	border-radius: 10px;
+	background-color: rgba(0, 0, 0, 0.5);
+	overflow: hidden;
+	
+	
+
+
+}
+.header{
+	position: relative;
+}
+#imageHolder .img-list {
+	overflow: hidden;
+}
+
+#imageHolder .img-list .img-item {
+	float: left;
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+
+}
+
+#imageHolder .img-list .img-item:last-child {
+	margin-right: 0px;
+}
+
+.contentList {
+	width: 40%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.contentList .contentItem {
+	float: left;
+	width: 100%;
+	margin-top: 5px;
+}
+.contentList .contentItem:first-child{
+	margin-top: 0;
+}
+
+
+
+canvas {
+	padding: 0;
+	margin: 0;
+}
+
+#dial{
+	
+	
+	text-align: center;
+	background-color: rgba(0,0,0,.5);
+	border-radius: 10px;
+	transition: 1s;
+	
+}
+
+
+
+#dial .message{
+	
+	font-size: 25px;
+	color: #fff;
+	
+}
+
+#time{
+	
+	color: #fff;
+	text-align: center;
+	border-radius: 10px;
+	background-color: rgba(0,0,0,.5);
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
